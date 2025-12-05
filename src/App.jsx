@@ -265,6 +265,16 @@ const MainApp = () => {
     }
   };
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    // Ensure this filename matches exactly what you put in the 'public' folder
+    link.href = '/BSDetector_Setup.exe'; 
+    link.download = 'BSDetector_Setup.exe';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const themeClasses = isDark 
     ? 'bg-slate-950 text-slate-100' 
     : 'bg-slate-50 text-slate-900';
@@ -326,7 +336,7 @@ const MainApp = () => {
             <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
             <a href="#privacy" onClick={() => setIsMenuOpen(false)}>Privacy</a>
             <a href="#pricing" onClick={() => setIsMenuOpen(false)}>Pricing</a>
-            <Button variant="primary" onClick={() => { setIsMenuOpen(false); scrollToSection('download'); }}>
+            <Button variant="primary" onClick={() => { setIsMenuOpen(false); handleDownload(); }}>
               Download for Windows
             </Button>
           </div>
@@ -357,7 +367,7 @@ const MainApp = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="primary">
+              <Button variant="primary" onClick={handleDownload}>
                 <Download size={20} />
                 Download for Windows
               </Button>
@@ -596,7 +606,7 @@ const MainApp = () => {
             Join 4,000+ hiring managers using BS Detector to conduct fairer, smarter, and more efficient interviews.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-             <Button variant="primary" className="px-8 py-4 text-lg">
+             <Button variant="primary" className="px-8 py-4 text-lg" onClick={handleDownload}>
                 Download for Windows
              </Button>
           </div>
